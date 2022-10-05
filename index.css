@@ -1,0 +1,18 @@
+html{
+  margin: 0%;
+}
+
+body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(16, 16, 17);
+  height: 80%; 
+  overflow: hidden;
+  margin: 0%;
+  height:100vh;
+}
+
+
+ 
+
