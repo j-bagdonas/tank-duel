@@ -33,9 +33,6 @@ export default class Controller {
         this.missile = false
       }
     }, false)
-    document.onmousemove = (event) => {
-      this.mouseX = event.clientX
-      this.mouseY = event.clientY
-    }
+    
   }
 } 

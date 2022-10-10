@@ -1,4 +1,7 @@
-
+/**
+* Default class for creating an element to add to the stage.
+* All Graphical elements of the game are extensions of the Enity class
+*/
 export default class Entity extends PIXI.Sprite {
   constructor(size, x, y, pathToImage){
     let texture = PIXI.Texture.from(pathToImage);
