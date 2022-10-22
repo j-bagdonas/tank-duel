@@ -28,6 +28,7 @@ globalThis.app = new PIXI.Application({
 document.body.appendChild(app.view)
 const player = new Tank(tankSize, screenWidth / 2, screenHeight / 2, './assets/tankBody.png', "./assets/tankTurret.png")
 const crosshair = new Entity(crosshairSize, screenWidth / 2, screenHeight / 2, "./assets/crosshair.png" )
+crosshair.alpha = 0.5
 globalThis.container = new PIXI.Container()
 window.container.interactive = true
 window.container.on('mousemove', function (e) {
