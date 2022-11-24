@@ -1,7 +1,10 @@
 import Entity from "../classes/entity.js";
+import Tank from "../classes/tank.js";
 import { fadeOut, explosion } from "./effects.js";
 
-const cannonAudio = new Audio("./assets/sounds/cannon.mp3")
+const cannonAudio = new Audio("./assets/audio/cannon.mp3")
+const hitAudio = new Audio("./assets/audio/tankImpact.wav")
+hitAudio.volume = 0.5     
 const flashSize = window.innerHeight / 64
 const tracerSize = window.innerHeight / 32
 const cannonVelocity = 15 // can be non relational to window size, constitutes the rate of tracer movement and position checking
@@ -17,6 +20,7 @@ export default function shootCannon(origin, target){
    */
   cannonAudio.load()
   cannonAudio.play()
+  hitAudio.load()
   /**
    * Render muzzle flash relative to turret rotation and origin
    */
@@ -39,18 +43,38 @@ export default function shootCannon(origin, target){
   const trajectory = setInterval(() => {
     tracer.x += offsetX
     tracer.y += offsetY
-    let distanceX = Math.abs(tracer.x - target.x)
-    let distanceY = Math.abs(tracer.y - target.y)
-    if(distanceX <= hitTolerance && distanceY <= hitTolerance){
-      explosion(explosionSize, tracer.x, tracer.y)
-      window.container.removeChild(tracer)
-      clearInterval(trajectory)
-    } 
+    if(checkProximity(tracer, target)){
+      //bomb crater?
+    }
+    obstacles.forEach(obstacle => {
+      checkProximity(tracer, obstacle)
+    })
   }, cannonVelocity)
 
+  function checkProximity(tracer, obstacle){
+    let distanceX = Math.abs(tracer.x - obstacle.x)
+    let distanceY = Math.abs(tracer.y - obstacle.y)
+    if(distanceX <= hitTolerance && distanceY <= hitTolerance){ //check proximity to obstacle
+      explosion(explosionSize, tracer.x, tracer.y)
+      if(obstacle instanceof Tank){
+        renderCrater(target)
+        hitAudio.play()
+      } 
+      window.container.removeChild(tracer)
+      clearInterval(trajectory)
+      return true
+    } else {
+      return false
+    }
+  }
   /**
    * -
    */
+  function renderCrater(target){
+    let crater = new Entity(gameSettings.craterSize, target.x, target.y, "../assets/effects/crater.png")
+    crater.rotation = Math.random() * (2 * Math.PI)
+    container.addChild(crater)
+  }
   
 
 } 

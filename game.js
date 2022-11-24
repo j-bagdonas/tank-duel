@@ -4,10 +4,12 @@ import shootCannon from "./scripts/shootCannon.js";
 import enemyAI from "./scripts/enemyAI.js"
 import Controller from "./classes/controller.js";
 import GameState from "./classes/gameState.js"
+import generateMap from "./scripts/generateMap.js";
 
 const gameState = new GameState()
 const controller = new Controller()
 initGame()
+generateMap()
 
 /**
  * What to do with these
@@ -15,11 +17,11 @@ initGame()
 var mouseX, mouseY
 var cannonCooldown
 
-window.container.on('mousemove', function (e) {
-  mouseX = e.data.global.x
-  mouseY = e.data.global.y
-});
 
+document.body.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX
+  mouseY = e.clientY
+})
 
 //To be moved when game play evolves
 window.container.addChild(player.hull)
@@ -65,7 +67,7 @@ function interfaceWithController() {
 }
 
 
-document.body.style.cursor = 'none'; //** THEN replace cursor with crosshair sort of vibe
+//document.body.style.cursor = 'none'; //** THEN replace cursor with crosshair sort of vibe
 
 /*------ Initialize Game ------ */
 // document.addEventListener("visibilitychange", () => {
