@@ -52,8 +52,10 @@ function interfaceWithController() {
   }
   if(controller.right){player.rotateHullRight()}
   if(controller.left){player.rotateHullLeft()}
-  if(controller.up){player.move(true)}
-  if(controller.down){player.move(false)}
+  if(controller.up){
+    player.move(true)
+  }   
+  if(controller.down){player.move(false)} 
   if(controller.shoot && !cannonCooldown){
     shootCannon(player, target)
     cannonCooldown = true

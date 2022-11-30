@@ -12,9 +12,11 @@ export default function initGame() {
     tankSize: window.innerWidth / 16,
     crosshairSize: window.innerWidth / 64,
     buildingSize: window.innerWidth / 16,
+    foliageSize: window.innerWidth / 32,
     hitTolerance: window.innerHeight / 32,
     obstructionTolerance: window.innerHeight / 16,
-    craterSize: window.innerHeight / 64
+    craterSize: window.innerHeight / 64,
+    engineVolume: 0.4
   }
 
   globalThis.app = new PIXI.Application({

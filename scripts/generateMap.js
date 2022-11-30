@@ -17,17 +17,17 @@ export default function generateMap(){
   }
 
   
+  placeSceneryItem(6, 2, window.gameSettings.foliageSize, "../assets/foliage/f2.png", Math.random() * Math.PI * 2)
+  placeSceneryItem(6, 2.5, window.gameSettings.foliageSize, "../assets/foliage/f2.png", Math.random() * Math.PI * 2)
+  placeSceneryItem(6, 3, window.gameSettings.foliageSize, "../assets/foliage/f2.png", Math.random() * Math.PI * 2)
+  placeSceneryItem(6, 3.5, window.gameSettings.foliageSize, "../assets/foliage/f2.png", Math.random() * Math.PI * 2)
+  placeSceneryItem(6, 4, window.gameSettings.foliageSize, "../assets/foliage/f2.png", Math.random() * Math.PI * 2)
 
 
-  placeSceneryItem(1, 1, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI * 2)
-  placeSceneryItem(2, 1, window.gameSettings.buildingSize, "../assets/buildings/building2.png", Math.PI * 2)
-  placeSceneryItem(3, 1, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI * 2)
-  placeSceneryItem(4, 1, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI * 2)
-
-  placeSceneryItem(1, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
-  placeSceneryItem(2, 4, window.gameSettings.buildingSize, "../assets/buildings/building2.png", Math.PI)
-  placeSceneryItem(3, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
-  placeSceneryItem(4, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
+  // placeSceneryItem(1, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
+  // placeSceneryItem(2, 4, window.gameSettings.buildingSize, "../assets/buildings/building2.png", Math.PI)
+  // placeSceneryItem(3, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
+  // placeSceneryItem(4, 4, window.gameSettings.buildingSize, "../assets/buildings/building1.png", Math.PI)
 
 
   // const building1 = new Entity(window.gameSettings.buildingSize, centerWidth + 100, centerHeight + 100, "../assets/buildings/building1.png")

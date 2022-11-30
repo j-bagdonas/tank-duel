@@ -1,4 +1,7 @@
 import Entity from "../classes/entity.js"
+const engine = new Audio("../assets/audio/engineIdle.wav")
+const engineRev = new Audio("../assets/audio/engineRev.wav")
+const tankTracks = new Audio("../assets/audio/tankTracks.wav")
 
 export default class Tank {
   constructor(size, x, y, pathToHullImage, pathToTurretImage){
@@ -11,6 +14,28 @@ export default class Tank {
     this.deadSpaceOffSet = window.innerHeight - (window.innerWidth * (9/16))
     this.obstructedForward = false
     this.obstructedBackward = false
+    this.motionState = false
+    this.prevMotionState = false
+    //Inital audio stuff
+    engine.volume = window.gameSettings.engineVolume
+    engineRev.volume = window.gameSettings.engineVolume
+    engine.load()
+    engine.play()
+    engine.loop = true;
+   
+
+    this.handleAudio = () => {
+      if(this.motionState){
+        engineRev.play()    
+        // tankTracks.play()
+        engine.playbackRate = 2.9
+        engine.volume = 0.7
+      } else {
+        engine.playbackRate = 1
+        engine.volume = window.gameSettings.enginevolume
+      }
+      this.prevMotionState = this.motionState
+    }
 
 
     this.syncComponents = () => {
@@ -23,6 +48,9 @@ export default class Tank {
     * Move tank using basic(sort of) trig and have the turret follow intended target
     */
     this.move = (isForward) => {
+      if(this.motionState != true){
+        this.motionState = true
+      }
       let positionRadians = Math.abs(this.hull.rotation % (2 * Math.PI))
       let vx = Math.cos(positionRadians) * this.speed
       let vy = Math.sin(positionRadians) * this.speed
@@ -35,6 +63,7 @@ export default class Tank {
         this.y += vy
       }
       this.syncComponents()
+      this.handleAudio()
     }
 
     this.rotateHullRight = () => {
